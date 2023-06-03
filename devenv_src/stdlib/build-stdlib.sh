@@ -18,7 +18,7 @@ cd build_newlib
   CC_FOR_BUILD=$CC \
   CFLAGS="-fPIC $COMMON_CFLAGS" \
   --target=$TARGET_TRIPLE --prefix=$PREFIX --disable-multilib --disable-newlib-multithread
-make -j 4
+make -j 12
 make install
 
 cd $BASEDIR
@@ -71,7 +71,7 @@ cmake -G "Unix Makefiles" \
   -DLIBCXX_ENABLE_STATIC=True \
   $BASEDIR/llvm-project/libcxx
 
-make -j4
+make -j12
 make install
 
 cd $BASEDIR
@@ -85,7 +85,7 @@ cd build_freetype
   CC=$CC \
   CFLAGS="-fPIC -I$PREFIX/include $COMMON_CFLAGS" \
   --host=$TARGET_TRIPLE --prefix=$PREFIX
-make -j 4
+make -j 12
 make install
 
 rm $PREFIX/lib/libfreetype.la

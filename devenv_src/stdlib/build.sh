@@ -5,6 +5,8 @@ exe() {
     "$@"
 }
 
+BASE0=/home/k
+
 echo "==========================================="
 echo "Preparing build environment."
 echo "==========================================="
@@ -24,13 +26,13 @@ exe rm ${CIDFILE}
 echo "==========================================="
 echo "Copying standard libraries."
 echo "==========================================="
-exe docker cp ${CID}:/usr/local/x86_64-elf ${HOME}/osbook/devenv
+exe docker cp ${CID}:/usr/local/x86_64-elf ${BASE0}/opt/cross64
 
 SRC=/usr/local/src
-DST=${HOME}/osbook/devenv/x86_64-elf
+DST=${BASE0}/opt/cross64/x86_64-elf
 exe docker cp ${CID}:${SRC}/newlib-cygwin/COPYING.NEWLIB ${DST}/LICENSE.newlib
 exe docker cp ${CID}:${SRC}/llvm-project/libcxx/LICENSE.TXT ${DST}/LICENSE.libcxx
 exe docker cp ${CID}:${SRC}/freetype-2.10.1/docs/FTL.TXT ${DST}/LICENSE.freetype
 
 echo ""
-echo "Done. Standard libraries at ${HOME}/osbook/devenv/x86_64-elf"
+echo "Done. Standard libraries at ${BASE0}/opt/cross64/x86_64-elf"
